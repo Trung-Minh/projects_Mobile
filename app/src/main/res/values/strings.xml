@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BookingHotelApp</string>
+    <string name="deluxe_description">Phòng cao cấp, không gian rộng rãi, view đẹp, đầy đủ tiện nghi hiện đại.</string>
+    <string name="standard_description">Phòng tiêu chuẩn, thoải mái, thích hợp cho 2 người với các tiện nghi cơ bản.</string>
+    <string name="family_description">Phòng gia đình, sức chứa lớn, phù hợp cho nhóm bạn hoặc gia đình đông người.</string>
+    <string name="suite_description">Phòng Suite sang trọng, có phòng khách riêng biệt và bồn tắm lớn.</string>
+    <string name="executive_description">Phòng đơn nhỏ gọn, tiết kiệm chi phí, lý tưởng cho khách du lịch một mình.</string>
+</resources>
