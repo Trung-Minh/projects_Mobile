@@ -86,26 +86,23 @@ fun RoomDetailScreen(
 
     Spacer(modifier = Modifier.height(16.dp))
 
+    var quantityInput by remember { mutableStateOf(viewModel.quantity.toString()) }
+    var showError by remember { mutableStateOf(false) }
+
     val available = viewModel.selectedRoom?.availableRooms ?: 1
-    var isInvalidQuantity by remember { mutableStateOf(false) }
 
     OutlinedTextField(
-      value = viewModel.quantity.toString(),
+      value = quantityInput,
       onValueChange = {
-        val newValue = it.toIntOrNull()
-        if (newValue != null && newValue in 1..available) {
-          viewModel.updateQuantity(newValue)
-          isInvalidQuantity = false
-        } else {
-          isInvalidQuantity = true
-        }
+        quantityInput = it
+        showError = false // reset lỗi khi gõ lại
       },
-      label = { Text("Số lượng phòng muốn đặt") },
-      isError = isInvalidQuantity,
+      label = { Text("Số lượng phòng muốn đặt (tối đa $available)") },
+      isError = showError,
       modifier = Modifier.fillMaxWidth()
     )
 
-    if (isInvalidQuantity) {
+    if (showError) {
       Text(
         text = "⚠️ Số lượng phòng không hợp lệ",
         color = Color.Red,
@@ -113,7 +110,6 @@ fun RoomDetailScreen(
         modifier = Modifier.padding(top = 4.dp)
       )
     }
-
 
     Spacer(modifier = Modifier.height(24.dp))
 
@@ -131,8 +127,15 @@ fun RoomDetailScreen(
 
       Button(
         onClick = {
-          navController.navigate("bookingSummary")
-        }
+          val q = quantityInput.toIntOrNull()
+          if (q != null && q in 1..available) {
+            viewModel.updateQuantity(q)
+            showError = false
+            navController.navigate("bookingSummary")
+          } else {
+            showError = true
+          }
+        },
       ) {
         Text("Đặt phòng")
       }
