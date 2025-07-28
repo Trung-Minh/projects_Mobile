@@ -100,7 +100,7 @@ fun RoomDetailScreen(
           isInvalidQuantity = true
         }
       },
-      label = { Text("Số lượng phòng muốn đặt (tối đa $available)") },
+      label = { Text("Số lượng phòng muốn đặt") },
       isError = isInvalidQuantity,
       modifier = Modifier.fillMaxWidth()
     )
